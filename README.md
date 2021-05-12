@@ -1,7 +1,7 @@
 # Automate-classes-on-Google-meet
 
 This is a puppeteer project. It automates all your google meet classes. It keeps track of the time and just when its time for your class it automatically launches a headless chrome in the background and joins in the meeting. It does all that in the background without any hindrance on the screen. I have also implemented the attendance feature in this code.
-The attendance feature sends your Roll no. in the chat only when it detects other participants of the meeting sending their rool nos.; not on any other random messages.
+The attendance feature sends your Roll no. in the chat only when it detects other participants of the meeting sending their roll nos. not on any other random messages.
 It will automatically login to the meeting, give your attendance, and move out onece the class is finished.
 
 ## Demo
