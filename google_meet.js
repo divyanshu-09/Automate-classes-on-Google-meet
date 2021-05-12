@@ -30,11 +30,9 @@ const main = async (id, password, url, roll_no, subject) => {
     const page = pages[0];
 
     console.log("Browser opened")
-    await page.screenshot({path: 'example.png'});
 
     await page.goto(url);    //google meet link of the meeting
 
-    //await page.screenshot({path: 'example.png'});
     await login_to_google(page,id,password);    
 
     
@@ -44,10 +42,8 @@ const main = async (id, password, url, roll_no, subject) => {
 
     console.log("Asked to join in the class");
 
-
-    //await page.screenshot({path: 'example.png'});
+    
     await page.waitForTimeout(2000);
-    await page.screenshot({path: 'example.png'});
     await page.waitForSelector(".HKarue");
     await page.click(".HKarue");
 
@@ -55,12 +51,6 @@ const main = async (id, password, url, roll_no, subject) => {
     await attendance(page);
     setInterval( function() { attendance(page); }, 3000 );
     
-    // await page.waitForSelector(".Pc9Gce.Wic03c")
-    // await page.click('.Pc9Gce.Wic03c');
-
-    // await page.waitForTimeout(2000);
-    // await page.type('.Pc9Gce.Wic03c',roll_no);
-    // await page.click('.DPvwYc.e3AdI')
 
     console.log('You have successfully joined the class of ' + subject);
 }
@@ -73,7 +63,6 @@ async function login_to_google(page,id,password) {
     await page.type("#Email",id);
 
     console.log("Email filled");
-    await page.screenshot({path: 'example.png'});
 
     await page.waitForTimeout(1000);
     await page.click('#next');
@@ -82,10 +71,8 @@ async function login_to_google(page,id,password) {
     await page.type("#password",password);
 
     console.log("password filled");
-    //await page.screenshot({path: 'example.png'});
 
     await page.waitForTimeout(2000);
-    await page.screenshot({path: 'example.png'});
     await page.click('#submit');
 }
 
@@ -98,25 +85,20 @@ async function turn_media_off(page) {
     await page.waitForSelector(".U26fgb.JRY2Pb.mUbCce.kpROve.uJNmj.QmxbVb.HNeRed.M9Bg4d");
 
     let audio_video = await page.$$(".U26fgb.JRY2Pb.mUbCce.kpROve.uJNmj.QmxbVb.HNeRed.M9Bg4d");
-    await page.screenshot({path: 'example.png'});
 
     for( const element of audio_video ) {
 
         await page.waitForTimeout(3000);
         await element.click();
-        //console.log("times");
-        //await page.waitForTimeout(3000);
     }
 
     console.log("mic and camera off");
     await page.waitForTimeout(3000);
-    await page.screenshot({path: 'example.png'});
 }
 
 
 async function attendance(page) {
 
-    //console.log("I am in the attendance");
     let chats = await page.$$('.Zmm6We .oIy2qc');
 
     for(let i=0;i<chats.length;i++) {
@@ -140,7 +122,6 @@ async function attendance(page) {
         }
 
         await page.waitForTimeout(1000);
-        //console.log(attendance_bool)
 
     }
 }
