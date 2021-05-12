@@ -9,11 +9,11 @@ I have made a video describing what the whole project does. Here is the [video](
 
 ## Features
 - Sit back and relax - it will handle all your online meet classes.
-- It automaically join all the meetings listed
+- It automatically join all the meetings listed in routine file
   -  Regularly checks if it is time for the class
-  -  As soon as it is time launces headless chrome
+  -  As soon as it is time launches headless chrome
   -  Login to your google account
-  -  Turn off your camera, microphone, mute the site
+  -  Turn off your camera, microphone and mute the site
   -  Asks to join and get entered in the meeting without knowing anyone even anyone is behind the screen or not.
   -  Sends your attendance
   -  It is very reliable will not turn on your camera or microphone at anytime in the meeting.
