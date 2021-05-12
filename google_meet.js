@@ -33,10 +33,10 @@ const main = async (id, password, url, roll_no, subject) => {
 
     await page.goto(url);    //google meet link of the meeting
 
-    await login_to_google(page,id,password);    
+    await login_to_google(page,id,password);    //login to Google account
 
     
-    await turn_media_off(page);
+    await turn_media_off(page);       //Turns of camera and microphone
 
     await page.click(".l4V7wb.Fxmcue");     //Ask to join button in the google meet
 
@@ -45,18 +45,18 @@ const main = async (id, password, url, roll_no, subject) => {
     
     await page.waitForTimeout(2000);
     await page.waitForSelector(".HKarue");
-    await page.click(".HKarue");
+    await page.click(".HKarue");            //Opens the chat box
 
     
     await attendance(page);
-    setInterval( function() { attendance(page); }, 3000 );
+    setInterval( function() { attendance(page); }, 3000 );      //Attendance feature
     
 
     console.log('You have successfully joined the class of ' + subject);
 }
 
 
-
+// Function for google sign in
 async function login_to_google(page,id,password) {
 
     await page.waitForSelector("#Email");
@@ -78,11 +78,11 @@ async function login_to_google(page,id,password) {
 
 
 
-
+// Function for turning off mic and camera
 async function turn_media_off(page) {
 
     await page.waitForTimeout(5000);
-    await page.waitForSelector(".U26fgb.JRY2Pb.mUbCce.kpROve.uJNmj.QmxbVb.HNeRed.M9Bg4d");
+    await page.waitForSelector(".U26fgb.JRY2Pb.mUbCce.kpROve.uJNmj.QmxbVb.HNeRed.M9Bg4d");    //Css selector for audio and video
 
     let audio_video = await page.$$(".U26fgb.JRY2Pb.mUbCce.kpROve.uJNmj.QmxbVb.HNeRed.M9Bg4d");
 
@@ -97,25 +97,26 @@ async function turn_media_off(page) {
 }
 
 
+// Function for handling the attendance feature
 async function attendance(page) {
 
-    let chats = await page.$$('.Zmm6We .oIy2qc');
+    let chats = await page.$$('.Zmm6We .oIy2qc');         //Css selector for all the chats
 
     for(let i=0;i<chats.length;i++) {
 
-        let chat_content = await page.evaluate(function(ele){
+        let chat_content = await page.evaluate(function(ele){          //evaluates each chat text
 
             return ele.textContent;
 
         },chats[i]);
         
 
-        if( chat_content != '1851106' && attendance_bool && chat_content.startsWith('1851')) {
+        if( chat_content != '1851106' && attendance_bool && chat_content.startsWith('1851')) {     //checks if last chat wasn't my roll and it is roll no. of any other student
 
             console.log("attendance marked");
             await page.waitForTimeout(2000);
-            await page.type('.Pc9Gce.Wic03c','1851106');
-            await page.click('.DPvwYc.e3AdI')
+            await page.type('.Pc9Gce.Wic03c','1851106');               // Typing roll
+            await page.click('.DPvwYc.e3AdI')                          // Sending the attendance
             
             
             attendance_bool = false;
